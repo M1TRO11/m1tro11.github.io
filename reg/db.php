@@ -4,10 +4,9 @@ $link;
 
 function db_connect() //подключение к базе
 {
-	global $cfg;
 	global $link;
 
-    $link = mysqli_connect("localhost", "user", "pass", "db_name");
+    $link = mysqli_connect("localhost", "f0652773_superbasse", "SZSQiyN1", "f0652773_superbasse");
 
     if (!$link) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
@@ -19,9 +18,11 @@ function db_connect() //подключение к базе
     mysqli_query($link, "SET CHARACTER SET utf8");
     mysqli_set_charset($link, "utf8");
 }
+
 function db_disconnect() //дисконект между нами океаны
 {
 	global $link;
 	mysqli_close($link);
 }
+
 ?>
