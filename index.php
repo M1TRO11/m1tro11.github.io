@@ -12,7 +12,7 @@
   </head>
   <body>
     <?php
-      if($_SESSION['message']){
+      if($_SESSION['message']){ //если ты успешный... пффффф, да ты ущербный, бро, о чём речь?
         echo '<script>alert("Вы успешно зарегистрированы!");</script>';
         unset($_SESSION['message']);
       }

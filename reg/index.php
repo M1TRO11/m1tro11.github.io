@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  session_start(); //вот взяли и стартнули сессию, это крч для _SESSION - глобальной вариэйбл для пользователя, его питс и т д
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +72,7 @@
               <button type="submit" class="btn btn-primary">Войти</button>
           </form>
           <?php
-          if($_SESSION['err_msg']){
+          if($_SESSION['err_msg']){ //если ошибочное сообщение существует выводим АХТУНГ
             echo '<div class="alert alert-warning" role="alert">'.$_SESSION["err_msg"].'</div>';
             unset($_SESSION['err_msg']);
           }

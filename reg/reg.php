@@ -1,43 +1,43 @@
 <?php
 
-session_start();
+session_start(); //начинаем сессию, эта штука - решение половины задач с регой, корзиной и т.д.
 
-include ("db.php");
+include ("db.php"); //связываемся с пхп который в ответе за базы и теперь можем юзать его функции
 
-$login = $_POST['login'];
+$login = $_POST['login']; //инитиализинг вариэйблс
 $password = $_POST['password'];
 $password_confirmation = $_POST['password_confirmation'];
 
-if ($password === $password_confirmation){
-  $login = stripslashes($login);
+if ($password === $password_confirmation){ //проверяем пароль и подтвердите пароль
+  $login = stripslashes($login); //избавляем логин и пароль от говна и всякого говна
   $login = htmlspecialchars($login);
   $password = stripslashes($password);
   $password = htmlspecialchars($password);
   $login = trim($login);
   $password = trim($password);
 
-  db_connect();
+  db_connect(); //помнишь про include? я тоже забыл, но теперь вспомнил и юзнул функцию из db.php который мы сюда инклуднули
 
-  $sql_str = "SELECT id FROM `AmongAss` WHERE `login`='".$login."'";
-  $q = @mysqli_query($link, $sql_str);
-  $myrow = mysqli_fetch_array($q);
-  if (!empty($myrow['id'])) {
-    $_SESSION['err_msg'] = "Извините, введённый вами логин уже зарегистрирован. Введите другой логин.";
-    header('Location: index.php');
-    die();
+  $sql_str = "SELECT id FROM `AmongAss` WHERE `login`='".$login."'"; //составляем запрос на поиск логана
+  $q = @mysqli_query($link, $sql_str); //ищем уже зареганый рено логан
+  $myrow = mysqli_fetch_array($q); //получился список таких логанов
+  if (!empty($myrow['id'])) { //если не пустой, т.е. логан всё таки существует
+    $_SESSION['err_msg'] = "Извините, введённый вами логин уже зарегистрирован. Введите другой логин."; //в сессию заносим сообщение ошибки
+    header('Location: index.php'); //и отправляем пользователя гулять обратно
+    die(); //и умереть не забываем
   }
-  $sql_str = "INSERT INTO `AmongAss` (login, password) VALUES ('$login', '$password')";
-  $q = @mysqli_query($link, $sql_str);
+  $sql_str = "INSERT INTO `AmongAss` (login, password) VALUES ('$login', '$password')"; //прикинь, не нашли твой логан, ну чтож, купим новый
+  $q = @mysqli_query($link, $sql_str); //отдал за это корыто все свои заначки ёкарный бабабуй
   if ($q != '') {
     $_SESSION['message'] = "Вы успешно зарегистрированы!";
-    header('Location: ../index.php');
+    header('Location: ../index.php'); //ураааааа, я с логаном
   } else {
     $_SESSION['err_msg'] = "Произошла ошибка! Попробуйте ещё раз позже...";
-    header('Location: index.php');
+    header('Location: index.php'); //нееееееееет, всё по отверстию пошло... P.S. эта ошибка хз вообще когда возникнет, по сути, если на сервак с бд упадёт метеорит
   }
 
-  db_disconnect();
-}else{
+  db_disconnect(); //дискотека алкоголя и мариуанны
+}else{ //ты тупой? пароль копипастить даже не умеешь...
   $_SESSION['err_msg'] = 'Пароли не совпадают';
   header('Location: index.php');
 }
