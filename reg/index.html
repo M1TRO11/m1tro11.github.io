@@ -52,21 +52,27 @@
         <div class="col">
           <div class="card mx-auto" style="width: 18rem;">
           <div class="card-body">
-          <form action="register.php" method="post">
+          <form action="reg.php" method="post">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Логин</label>
-              <input type="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input name="login" type="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Подтвердите пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword2">
+                <input name="password_confirmation" type="password" class="form-control" id="exampleInputPassword2" required>
               </div>
               <button type="submit" class="btn btn-primary">Войти</button>
           </form>
+          <?php
+          if($_SESSION['err_msg']){
+            echo '<div class="alert alert-warning" role="alert">'.$_SESSION['err_msg'].'</div>';
+            unset($_SESSION['err_msg']);
+          }
+          ?>
           </div>
           </div>
         </div>

@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <?php
+      if($_SESSION['message']){
+        echo '<script>alert("Вы успешно зарегистрированы!");</script>';
+        unset($_SESSION['message']);
+      }
+    ?>
     <header> <!-- панель навигации скопипастенная с бустрапа -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
