@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,7 +73,7 @@
           </form>
           <?php
           if($_SESSION['err_msg']){
-            echo '<div class="alert alert-warning" role="alert">'.$_SESSION['err_msg'].'</div>';
+            echo '<div class="alert alert-warning" role="alert">'.$_SESSION["err_msg"].'</div>';
             unset($_SESSION['err_msg']);
           }
           ?>
