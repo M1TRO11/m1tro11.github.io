@@ -18,7 +18,7 @@ if ($password === $password_confirmation){
 
   db_connect();
 
-  $sql_str = "SELECT id FROM `AmongAss` WHERE login=".$login;
+  $sql_str = "SELECT id FROM `AmongAss` WHERE `login`='".$login."'";
   $q = @mysqli_query($link, $sql_str);
   $myrow = mysqli_fetch_array($q);
   if (!empty($myrow['id'])) {
