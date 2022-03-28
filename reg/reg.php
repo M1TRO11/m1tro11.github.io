@@ -24,6 +24,7 @@ if ($password === $password_confirmation){
   if (!empty($myrow['id'])) {
     $_SESSION['err_msg'] = "Извините, введённый вами логин уже зарегистрирован. Введите другой логин.";
     header('Location: index.php');
+    die();
   }
   $sql_str = "INSERT INTO `AmongAss` (login, password) VALUES ('$login', '$password')";
   $q = @mysqli_query($link, $sql_str);
