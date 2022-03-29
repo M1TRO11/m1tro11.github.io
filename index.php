@@ -11,12 +11,6 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <?php
-      if($_SESSION['message']){ //если ты успешный... пффффф, да ты ущербный, бро, о чём речь?
-        echo '<script>alert("Вы успешно зарегистрированы!");</script>';
-        unset($_SESSION['message']);
-      }
-    ?>
     <header> <!-- панель навигации скопипастенная с бустрапа -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -33,6 +27,7 @@
           <a class="nav-link" href="/reg/">Вход/Регистрация</a> <!-- тут типа active это выделенная черным типа мы на этой вкладке -->
         </li>
       </ul>
+      <a>hjh</a>
       <form class="d-flex" action="cart/"> <!-- экшнон на корзину тётю зину -->
         <button class="btn btn-outline-success" type="submit">карзина тётя зина</button>
       </form>
@@ -42,4 +37,10 @@
 </header>
     <h1 class="display-1">СУПЕР МЕГА ПИТСА КЛАСС</h1>
   </body>
+  <?php
+    if($_SESSION['message']){ //если ты успешный... пффффф, да ты ущербный, бро, о чём речь?
+      echo '<script>alert("Вы успешно зарегистрированы!");</script>';
+      unset($_SESSION['message']);
+    }
+  ?>
 </html>
