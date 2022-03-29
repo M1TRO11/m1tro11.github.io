@@ -39,17 +39,23 @@
         <div class="col"> <!-- а тут как-будто столбец таблицы - col -->
           <div class="card mx-auto" style="width: 18rem;"> <!-- формы решил сделать в карточках, так красиво -->
           <div class="card-body">
-          <form action="login.php" method="post"> <!-- тут начинается форма -->
+          <form action="log.php" method="post"> <!-- тут начинается форма -->
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Логин</label>
-              <input type="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
               </div>
               <button type="submit" class="btn btn-primary">Войти</button>
           </form>
+          <?php
+          if($_SESSION['log_err_msg']){ //если ошибочное сообщение существует выводим АХТУНГ
+            echo '<div class="alert alert-warning" role="alert">'.$_SESSION["log_err_msg"].'</div>';
+            unset($_SESSION['log_err_msg']);
+          }
+          ?>
           </div>
           </div>
         </div> <!-- тут закончился div карточки, в которому была форма и div стоблца col -->

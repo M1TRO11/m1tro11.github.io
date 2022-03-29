@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include("db.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +22,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Главная</a>
+          <a class="nav-link active" aria-current="page" href="">Главная</a><!-- тут типа active это выделенная черным типа мы на этой вкладке -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/reg/">Вход/Регистрация</a> <!-- тут типа active это выделенная черным типа мы на этой вкладке -->
+          <a class="nav-link" href="/reg/">Вход/Регистрация</a>
         </li>
       </ul>
-      <?php //проверяем есть ли юзер и сидит ли он в системе, если да - добавляем ссылку на акк
+      <?php
         if($_SESSION['user']){
           echo '<a href="../account/">'.$_SESSION["user"].'</a>';
         }
@@ -40,10 +41,21 @@
 </nav>
 </header>
     <h1 class="display-1">СУПЕР МЕГА ПИТСА КЛАСС</h1>
+    <?php
+        db_connect(); //ищем питсы
+        $sql_str = "SELECT * FROM `pitsi`";
+        $q = @mysqli_query($link, $sql_str);
+        $myrow = mysqli_fetch_array($q);
+        if(!empty($myrow)){
+            for($i=1; $i <= count($myrow['id']); $i++){
+
+            }
+        }
+    ?>
   </body>
   <?php
     if($_SESSION['message']){ //если ты успешный... пффффф, да ты ущербный, бро, о чём речь?
-      echo '<script>alert("Вы успешно зарегистрированы!");</script>';
+      echo '<script>alert("'.$_SESSION["message"].'");</script>';
       unset($_SESSION['message']);
     }
   ?>
