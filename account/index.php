@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1 class="mx-auto">
-      <?php
+      <?php //просто ник на всю страницу, норм че
         if($_SESSION['user']){
           echo $_SESSION['user'];
         }else{
