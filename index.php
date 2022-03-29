@@ -45,11 +45,31 @@
         db_connect(); //ищем питсы
         $sql_str = "SELECT * FROM `pitsi`";
         $q = @mysqli_query($link, $sql_str);
-        $myrow = mysqli_fetch_array($q);
-        if(!empty($myrow)){
-            for($i=1; $i <= count($myrow['id']); $i++){
-
+        if($q != ''){ //если питсы вообще есть
+            $to_echo = '<div class="container">'; //бустраповский контейнер
+            $to_echo .= '<div class="row">'; //строка
+            $i = 1;
+            while($myrow = mysqli_fetch_array($q)){
+                $to_echo .= '<div class="col">'; //типа столбец
+                $to_echo .= '<div class="card" style="width: 18rem;">'; //и карточка
+                $to_echo .= '<img src="'.$myrow["img"].'" class="card-img-top" alt="'.$myrow["name"].'">'; //подвозим из базы картинку и имя
+                $to_echo .= '<div class="card-body">';
+                $to_echo .= '<h5 class="card-title">'.$myrow["name"].'</h5>';
+                $to_echo .= '<h6 class="card-subtitle mb-2 text-muted">'.$myrow["components"].'</h6>';
+                $to_echo .= '<p class="card-text">'.$myrow["description"].'</p>'; //описание
+                $to_echo .= '<a href="#" class="btn btn-warning">Добавить в корзину: '.$myrow["price"].' bucks</a>';
+                $to_echo .= '</div>';
+                $to_echo .= '</div>'; //вся эта конструкция просто красивая, мне нравится писать через точку равно, видно что за html-структура тут, так то тут можно что угодно и как угодно впихнуть
+                $to_echo .= '</div>';
+                if($i%5 == 0 /*& isset($myrow['id'][i+1])*/){
+                  $to_echo .= '</div>';
+                  $to_echo .= '<div class="row">';
+                }
+                $i++;
             }
+            $to_echo .= '</div>';
+            $to_echo .= '</div>';
+            echo $to_echo;
         }
     ?>
   </body>
