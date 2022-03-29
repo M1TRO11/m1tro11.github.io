@@ -27,7 +27,11 @@
           <a class="nav-link" href="/reg/">Вход/Регистрация</a> <!-- тут типа active это выделенная черным типа мы на этой вкладке -->
         </li>
       </ul>
-      <a>hjh</a>
+      <?php
+        if($_SESSION['user']){
+          echo '<a href="../account/">'.$_SESSION["user"].'</a>';
+        }
+      ?>
       <form class="d-flex" action="cart/"> <!-- экшнон на корзину тётю зину -->
         <button class="btn btn-outline-success" type="submit">карзина тётя зина</button>
       </form>
